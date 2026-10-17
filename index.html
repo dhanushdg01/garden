@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#173f35">
+  <title>Campus Garden | Plant Explorer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
+  <style>
+    :root{--forest:#173f35;--green:#2f7158;--lime:#d8edb7;--cream:#f7f7ef;--ink:#1e2b25;--muted:#68766e;--line:#e3e8df;--white:#fff;--shadow:0 18px 55px rgba(23,63,53,.09)}
+    *{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;background:var(--cream);color:var(--ink);font-family:"DM Sans",sans-serif}
+    button,input{font:inherit} button{cursor:pointer} a{color:inherit}
+    .topbar{background:var(--forest);color:#fff;padding:15px 6vw;display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .brand{display:flex;align-items:center;gap:10px;font-family:Manrope,sans-serif;font-weight:800;letter-spacing:-.4px}.brand-mark{display:grid;place-items:center;background:var(--lime);color:var(--forest);height:36px;width:36px;border-radius:12px;font-size:20px}
+    .top-note{font-size:13px;color:#d2e0d8}
+    main{max-width:1160px;margin:auto;padding:38px 22px 70px}
+    .hero{display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:center;margin:14px 0 30px}
+    .eyebrow{display:inline-flex;align-items:center;gap:8px;background:#e8efdf;color:var(--green);border-radius:99px;padding:8px 12px;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+    h1,h2,h3{font-family:Manrope,sans-serif;letter-spacing:-.04em} h1{font-size:clamp(38px,5vw,62px);line-height:1.04;margin:18px 0 16px;color:var(--forest);max-width:620px}
+    .hero p{color:var(--muted);font-size:16px;line-height:1.7;max-width:550px;margin:0}
+    .hero-art{min-height:235px;border-radius:28px;background:linear-gradient(135deg,#d8edb7,#8fbd8c);position:relative;overflow:hidden;padding:28px;display:flex;align-items:flex-end;box-shadow:var(--shadow)}
+    .hero-art:before,.hero-art:after{content:"";position:absolute;border-radius:100% 0 100% 0;background:rgba(23,63,53,.12);transform:rotate(-28deg)}
+    .hero-art:before{width:210px;height:310px;right:30px;top:-70px}.hero-art:after{width:130px;height:220px;right:150px;top:40px;background:rgba(255,255,255,.22)}
+    .art-copy{position:relative;z-index:1;background:rgba(255,255,255,.78);backdrop-filter:blur(8px);padding:14px 17px;border-radius:16px;max-width:260px}
+    .art-copy strong{display:block;font-family:Manrope,sans-serif;font-size:17px;color:var(--forest)}.art-copy span{font-size:12px;color:var(--muted)}
+    .main-grid{display:grid;grid-template-columns:minmax(280px,.82fr) minmax(0,1.18fr);gap:22px;align-items:start}
+    .panel{background:var(--white);border:1px solid var(--line);border-radius:24px;padding:22px;box-shadow:var(--shadow)}
+    .panel-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}
+    .panel-heading h2{font-size:21px;margin:0;color:var(--forest)}.step{font-size:11px;font-weight:700;color:var(--green);background:#edf5e6;padding:7px 10px;border-radius:99px}
+    .scanner-frame{border:1px dashed #b9cbb8;border-radius:18px;padding:12px;background:#fbfcf8}
+    #reader{width:100%;min-height:190px;border:0!important;border-radius:13px;overflow:hidden}
+    #reader video{border-radius:13px;object-fit:cover}
+    #reader img{border-radius:12px}
+    #reader__dashboard_section_csr button,#reader button{background:var(--forest)!important;color:white!important;border:0!important;border-radius:10px!important;padding:9px 12px!important;margin:5px!important;font-size:13px!important}
+    #reader select{max-width:100%;padding:9px;border:1px solid var(--line);border-radius:10px}
+    .scan-status{font-size:13px;line-height:1.5;color:var(--muted);margin:13px 2px 0;display:flex;gap:8px;align-items:flex-start}
+    .status-dot{width:8px;height:8px;flex:0 0 8px;border-radius:50%;background:#8abf78;margin-top:5px}
+    .divider-label{display:flex;align-items:center;gap:10px;color:#9aa59b;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin:18px 0}
+    .divider-label:before,.divider-label:after{content:"";height:1px;background:var(--line);flex:1}
+    .search-row{display:flex;gap:8px}.search-row input{min-width:0;flex:1;border:1px solid var(--line);border-radius:12px;padding:12px 13px;outline:none;background:#fff}.search-row input:focus{border-color:#77a786;box-shadow:0 0 0 3px #e9f3e7}
+    .primary-btn{border:0;background:var(--forest);color:white;padding:12px 15px;border-radius:12px;font-weight:700;transition:transform .18s,background .18s}.primary-btn:hover{background:#245747;transform:translateY(-1px)}
+    .featured-title{font-size:14px;font-weight:700;margin:21px 0 10px;color:var(--forest)}
+    .featured-list{display:grid;gap:8px}
+    .featured-item{display:flex;align-items:center;gap:11px;padding:9px;border:1px solid transparent;border-radius:14px;background:#fafbf7;text-align:left;width:100%;transition:.18s}
+    .featured-item:hover{border-color:#c8ddc4;background:#f2f7ec;transform:translateX(2px)}
+    .featured-thumb{height:45px;width:48px;object-fit:cover;border-radius:10px;background:#e8efdf;flex:0 0 48px}
+    .featured-item strong{display:block;font-size:13px;color:var(--ink)}.featured-item small{display:block;color:var(--muted);font-size:11px;margin-top:3px}
+    .detail-panel{min-height:580px;overflow:hidden}
+    .empty-state{min-height:520px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px}
+    .empty-icon{width:88px;height:88px;border-radius:28px;display:grid;place-items:center;background:#edf5e6;font-size:38px;margin-bottom:18px}
+    .empty-state h2{font-size:25px;color:var(--forest);margin:0 0 9px}.empty-state p{font-size:14px;color:var(--muted);line-height:1.65;max-width:310px;margin:0}
+    .detail-content{animation:rise .35s ease both}.detail-content[hidden]{display:none}
+    @keyframes rise{from{opacity:0;transform:translateY(9px)}to{opacity:1;transform:translateY(0)}}
+    .plant-photo{width:100%;height:255px;object-fit:cover;border-radius:18px;background:#e8efdf;display:block}
+    .plant-meta{display:flex;gap:8px;flex-wrap:wrap;margin:17px 0 10px}.pill{font-size:11px;font-weight:700;color:var(--green);background:#edf5e6;padding:7px 10px;border-radius:99px}
+    .plant-title{font-size:31px;line-height:1.1;margin:0;color:var(--forest)}.scientific{font-family:Georgia,serif;font-style:italic;color:var(--muted);margin:7px 0 14px;font-size:15px}
+    .description{color:#5d6b62;line-height:1.7;font-size:14px;margin:0 0 20px}
+    .info-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin:18px 0}
+    .info-card{background:#f6f8f2;border:1px solid #e9eee4;border-radius:14px;padding:12px 11px}.info-card .emoji{font-size:19px}.info-card strong{display:block;font-size:12px;margin:7px 0 4px;color:var(--forest)}.info-card span{font-size:11px;line-height:1.45;color:var(--muted);display:block}
+    .detail-section{margin-top:18px}.detail-section h3{font-size:15px;color:var(--forest);margin:0 0 7px}.detail-section p{font-size:13px;line-height:1.65;color:var(--muted);margin:0}
+    .adopted{margin-top:18px;background:#f1f6e9;border-radius:13px;padding:12px 14px;font-size:12px;color:#50694f}
+    .footer{text-align:center;color:#8b978d;font-size:12px;padding:25px 10px 0}.toast{position:fixed;bottom:20px;left:50%;transform:translate(-50%,15px);opacity:0;pointer-events:none;background:#203f34;color:#fff;padding:12px 16px;border-radius:12px;font-size:13px;box-shadow:var(--shadow);transition:.25s;z-index:20}.toast.show{opacity:1;transform:translate(-50%,0)}
+    @media(max-width:800px){main{padding:25px 15px 45px}.hero{grid-template-columns:1fr;gap:18px;margin-top:5px}.hero-art{min-height:165px}.main-grid{grid-template-columns:1fr}.detail-panel{min-height:400px}.empty-state{min-height:350px}.topbar{padding:13px 18px}.top-note{display:none}}
+    @media(max-width:420px){.panel{padding:15px;border-radius:19px}.info-grid{gap:6px}.info-card{padding:10px 8px}.plant-photo{height:210px}.plant-title{font-size:27px}.search-row{flex-direction:column}.primary-btn{width:100%}}
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><span class="brand-mark">✿</span><span>Campus Garden</span></div>
+    <div class="top-note">A little discovery grows every day</div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <span class="eyebrow">🌱 Explore · Learn · Grow</span>
+        <h1>Meet the plants growing around you.</h1>
+        <p>Scan a plant tag to discover its story, care needs, and fun facts. Your campus garden is full of little wonders.</p>
+      </div>
+      <div class="hero-art">
+        <div class="art-copy"><strong>Every plant has a story.</strong><span>Scan a tag and get to know your green neighbours.</span></div>
+      </div>
+    </section>
+
+    <section class="main-grid">
+      <aside class="panel">
+        <div class="panel-heading"><h2>Plant scanner</h2><span class="step">STEP 01</span></div>
+        <div class="scanner-frame"><div id="reader"></div></div>
+        <p class="scan-status" id="scanStatus"><span class="status-dot"></span><span>Allow camera access, then point it at a plant QR tag. The QR code should contain a plant ID, such as <b>plant-001</b>.</span></p>
+        <div class="divider-label">or search by name / ID</div>
+        <form id="searchForm" class="search-row">
+          <input id="searchInput" type="search" placeholder="Try “Hibiscus” or plant-001" aria-label="Search plants">
+          <button class="primary-btn" type="submit">Find plant</button>
+        </form>
+        <div class="featured-title">Explore featured plants</div>
+        <div id="featuredList" class="featured-list"></div>
+      </aside>
+
+      <section class="panel detail-panel" aria-live="polite">
+        <div id="emptyState" class="empty-state">
+          <div class="empty-icon">🌿</div>
+          <h2 id="emptyTitle">Point your camera at a plant tag</h2>
+          <p id="emptyText">Plant details will appear here. You can also choose a featured plant or search by name.</p>
+        </div>
+        <article id="detailContent" class="detail-content" hidden></article>
+      </section>
+    </section>
+    <div class="footer">Made for curious minds and greener campuses · Campus Garden Explorer</div>
+  </main>
+  <div class="toast" id="toast" role="status"></div>
+
+  <script>
+    // Plant details live in plants.json. Add a new entry there to add another plant.
+    let plants = {};
+    let scanner = null;
+    let scanStarted = false;
+    let lastScanValue = "";
+    let toastTimer;
+
+    const $ = (id) => document.getElementById(id);
+
+    async function loadPlants() {
+      try {
+        const response = await fetch("./plants.json", { cache: "no-store" });
+        if (!response.ok) throw new Error("Could not load plants.json");
+        plants = await response.json();
+        renderFeatured();
+        setStatus("Ready to scan. Allow camera access and point it at a plant QR tag.");
+        startScanner();
+      } catch (error) {
+        console.error(error);
+        setStatus("Plant data could not load. Run this website through a local web server (not by opening the file directly) and check that plants.json is beside index.html.");
+        $("emptyTitle").textContent = "One quick setup step";
+        $("emptyText").textContent = "This template loads plant information from plants.json. Start a local server or host the folder online, then refresh.";
+      }
+    }
+
+    function setStatus(message) {
+      $("scanStatus").innerHTML = '<span class="status-dot"></span><span>' + escapeHtml(message) + '</span>';
+    }
+
+    function showToast(message) {
+      $("toast").textContent = message;
+      $("toast").classList.add("show");
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => $("toast").classList.remove("show"), 2600);
+    }
+
+    function escapeHtml(value = "") {
+      return String(value).replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+    }
+
+    function renderFeatured() {
+      const featured = Object.values(plants).slice(0, 5);
+      $("featuredList").innerHTML = featured.map(plant => `
+        <button class="featured-item" type="button" data-plant-id="${escapeHtml(plant.id)}">
+          <img class="featured-thumb" src="${escapeHtml(plant.photo)}" alt="" loading="lazy" onerror="this.style.visibility='hidden'">
+          <span><strong>${escapeHtml(plant.commonName)}</strong><small>${escapeHtml(plant.scientificName)} · ${escapeHtml(plant.id)}</small></span>
+        </button>`).join("");
+      $("featuredList").querySelectorAll("[data-plant-id]").forEach(button => {
+        button.addEventListener("click", () => showPlant(button.dataset.plantId));
+      });
+    }
+
+    function showPlant(id) {
+      const plant = plants[id];
+      if (!plant) {
+        showToast("Plant not found. Check the QR code or search term.");
+        return;
+      }
+      $("emptyState").hidden = true;
+      const detail = $("detailContent");
+      detail.hidden = true;
+      detail.innerHTML = `
+        <img class="plant-photo" src="${escapeHtml(plant.photo)}" alt="${escapeHtml(plant.commonName)}" onerror="this.onerror=null;this.src='https://placehold.co/900x600/e8efdf/173f35?text=Plant+Photo'">
+        <div class="plant-meta"><span class="pill">🌿 ${escapeHtml(plant.category || "Campus plant")}</span><span class="pill">ID · ${escapeHtml(plant.id)}</span></div>
+        <h2 class="plant-title">${escapeHtml(plant.commonName)}</h2>
+        <p class="scientific">${escapeHtml(plant.scientificName)}</p>
+        <p class="description">${escapeHtml(plant.description)}</p>
+        <div class="info-grid">
+          <div class="info-card"><span class="emoji">☀️</span><strong>Sunlight</strong><span>${escapeHtml(plant.care?.sun || "See care guide")}</span></div>
+          <div class="info-card"><span class="emoji">💧</span><strong>Water</strong><span>${escapeHtml(plant.care?.water || "See care guide")}</span></div>
+          <div class="info-card"><span class="emoji">🪴</span><strong>Soil</strong><span>${escapeHtml(plant.care?.soil || "See care guide")}</span></div>
+        </div>
+        <section class="detail-section"><h3>🌸 Season / bloom time</h3><p>${escapeHtml(plant.bloomTime || "Varies with local climate and care.")}</p></section>
+        <section class="detail-section"><h3>✨ Did you know?</h3><p>${escapeHtml(plant.funFact || "Every plant plays a role in its ecosystem.")}</p></section>
+        ${plant.adoptedBy ? `<div class="adopted">💚 <b>Planted / adopted by:</b> ${escapeHtml(plant.adoptedBy)}</div>` : ""}
+      `;
+      detail.hidden = false;
+      $("searchInput").value = plant.commonName;
+      detail.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    }
+
+    function normalizeScan(raw) {
+      // QR codes should contain only the plant ID, e.g. plant-001.
+      // Also accepts a URL ending in an ID for convenient testing.
+      const value = String(raw || "").trim();
+      if (plants[value]) return value;
+      const lastPart = value.replace(/\/+$/, "").split(/[/?#]/).pop();
+      return plants[lastPart] ? lastPart : value;
+    }
+
+    function onScanSuccess(decodedText) {
+      if (decodedText === lastScanValue) return;
+      lastScanValue = decodedText;
+      const id = normalizeScan(decodedText);
+      if (plants[id]) {
+        showPlant(id);
+        setStatus("Scanned successfully: " + id + ". Scan another tag whenever you're ready.");
+      } else {
+        showToast("Unknown plant ID: " + decodedText);
+        setStatus("QR detected, but its value does not match a plant ID in plants.json.");
+      }
+    }
+
+    async function startScanner() {
+      if (scanStarted || !window.Html5Qrcode) {
+        if (!window.Html5Qrcode) setStatus("Camera scanner library did not load. Use the search box below.");
+        return;
+      }
+      scanner = new Html5Qrcode("reader");
+      try {
+        const cameras = await Html5Qrcode.getCameras();
+        if (!cameras || !cameras.length) {
+          setStatus("No camera found. Use the search box or choose a featured plant.");
+          return;
+        }
+        const preferred = cameras.find(camera => /back|rear|environment/i.test(camera.label)) || cameras[0];
+        await scanner.start(
+          preferred.id,
+          { fps: 10, qrbox: { width: 220, height: 220 }, aspectRatio: 1.0 },
+          onScanSuccess,
+          () => {}
+        );
+        scanStarted = true;
+        setStatus("Camera is on. Point it at a plant QR tag. QR content should be a plant ID like plant-001.");
+      } catch (error) {
+        console.warn("Camera unavailable or permission denied:", error);
+        setStatus("Camera permission was denied or the camera is unavailable. Search by plant name / ID, or tap a featured plant below.");
+      }
+    }
+
+    $("searchForm").addEventListener("submit", event => {
+      event.preventDefault();
+      const query = $("searchInput").value.trim().toLowerCase();
+      if (!query) { showToast("Enter a plant name or ID first."); return; }
+      const exactId = Object.keys(plants).find(id => id.toLowerCase() === query);
+      const match = exactId || Object.values(plants).find(plant =>
+        plant.commonName.toLowerCase().includes(query) ||
+        plant.scientificName.toLowerCase().includes(query) ||
+        plant.id.toLowerCase().includes(query)
+      )?.id;
+      if (match) showPlant(match);
+      else showToast("No matching plant. Try another name or ID.");
+    });
+
+    loadPlants();
+  </script>
+</body>
+</html>

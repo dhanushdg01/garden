@@ -1,0 +1,82 @@
+{
+  "plant-001": {
+    "id": "plant-001",
+    "commonName": "Hibiscus",
+    "scientificName": "Hibiscus rosa-sinensis",
+    "category": "Flowering shrub",
+    "photo": "https://images.unsplash.com/photo-1597848212624-e6e4f6a4c8f4?auto=format&fit=crop&w=1200&q=85",
+    "description": "Hibiscus is a tropical flowering shrub known for its large, colourful blooms. It attracts pollinators and adds a bright splash of colour to gardens.",
+    "care": {
+      "sun": "Full sun to partial sun",
+      "water": "Keep soil evenly moist; avoid waterlogging",
+      "soil": "Fertile, well-draining soil"
+    },
+    "bloomTime": "Often flowers through warm months; timing depends on local climate and care.",
+    "funFact": "Hibiscus flowers are visited by butterflies and other pollinators.",
+    "adoptedBy": "Campus Garden Team"
+  },
+  "plant-002": {
+    "id": "plant-002",
+    "commonName": "Aloe Vera",
+    "scientificName": "Aloe vera",
+    "category": "Succulent",
+    "photo": "https://images.unsplash.com/photo-1509423350716-97f9360b4e09?auto=format&fit=crop&w=1200&q=85",
+    "description": "Aloe vera is a hardy succulent with thick, water-storing leaves. It is well suited to sunny spots and needs less frequent watering than many garden plants.",
+    "care": {
+      "sun": "Bright light; some direct sun",
+      "water": "Allow soil to dry between watering",
+      "soil": "Sandy, fast-draining succulent mix"
+    },
+    "bloomTime": "Mature plants may send up flower spikes in warm conditions.",
+    "funFact": "Its fleshy leaves store water, helping the plant tolerate dry periods.",
+    "adoptedBy": "Eco Club"
+  },
+  "plant-003": {
+    "id": "plant-003",
+    "commonName": "Tulsi / Holy Basil",
+    "scientificName": "Ocimum tenuiflorum",
+    "category": "Aromatic herb",
+    "photo": "https://images.unsplash.com/photo-1615485290382-441e4d049cb5?auto=format&fit=crop&w=1200&q=85",
+    "description": "Tulsi is a fragrant herb widely grown in South Asia. Its aromatic leaves and small flowers make it a familiar feature in home and community gardens.",
+    "care": {
+      "sun": "Around 4–6 hours of sunlight",
+      "water": "Water when the top soil begins to dry",
+      "soil": "Well-draining soil enriched with compost"
+    },
+    "bloomTime": "Small flower spikes commonly appear in warm weather.",
+    "funFact": "Tulsi belongs to the mint family, Lamiaceae.",
+    "adoptedBy": "Nature & Wellness Club"
+  },
+  "plant-004": {
+    "id": "plant-004",
+    "commonName": "Areca Palm",
+    "scientificName": "Dypsis lutescens",
+    "category": "Ornamental palm",
+    "photo": "https://images.unsplash.com/photo-1512428813834-c702c7702b78?auto=format&fit=crop&w=1200&q=85",
+    "description": "The areca palm is a graceful, clump-forming palm with arching, feather-like fronds. It is commonly used to bring a lush tropical look to landscaped spaces.",
+    "care": {
+      "sun": "Bright filtered light or partial shade",
+      "water": "Water when the top layer starts to dry",
+      "soil": "Rich, well-draining potting or garden soil"
+    },
+    "bloomTime": "Mature outdoor palms can flower in warm conditions.",
+    "funFact": "Its many slender stems create a soft, fountain-like shape.",
+    "adoptedBy": "Landscape Volunteers"
+  },
+  "plant-005": {
+    "id": "plant-005",
+    "commonName": "Marigold",
+    "scientificName": "Tagetes erecta",
+    "category": "Flowering annual",
+    "photo": "https://images.unsplash.com/photo-1508610048659-a06b669e3321?auto=format&fit=crop&w=1200&q=85",
+    "description": "Marigolds produce cheerful yellow and orange flower heads and are popular in ornamental gardens. They grow quickly in warm weather with good sunlight.",
+    "care": {
+      "sun": "Full sun",
+      "water": "Water at the base when the soil starts to dry",
+      "soil": "Moderately fertile, well-draining soil"
+    },
+    "bloomTime": "Often blooms from a few weeks after planting until weather becomes unsuitable.",
+    "funFact": "Marigolds are frequently planted in mixed gardens to add colour and attract beneficial insects.",
+    "adoptedBy": "First-Year Student Volunteers"
+  }
+}
